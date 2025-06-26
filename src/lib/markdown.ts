@@ -3,6 +3,9 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import nextConfig from '../../next.config.mjs';
+
+const basePath = nextConfig.basePath || '';
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
@@ -31,7 +34,8 @@ export async function getSortedPostsData(subDirectory: 'blog' | 'projects') {
       const time = matterResult.data.time || 'N/A';
       const role = matterResult.data.role || 'N/A';
       const keywords = matterResult.data.keywords || '';
-      const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+      const imagePath = matterResult.data.image || '/images/projects/dco-placeholder.png';
+      const image = imagePath.startsWith('http') ? imagePath : `${basePath}${imagePath}`;
       const summary = matterResult.data.summary || '';
 
       // Process summary from markdown to HTML

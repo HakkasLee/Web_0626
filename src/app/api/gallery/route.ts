@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import exifParser from 'exif-parser';
+import sizeOf from 'image-size';
+import exifReader from 'exif-reader';
+import nextConfig from '../../../../next.config.mjs';
+
+const basePath = nextConfig.basePath || '';
+
+export const revalidate = 3600;
 
 export async function GET() {
   try {
@@ -13,6 +19,7 @@ export async function GET() {
         const filePath = path.join(photoDirectory, file);
         const fileBuffer = fs.readFileSync(filePath);
         let exifData = null;
+        let dimensions = null;
         try {
           const parser = exifParser.create(fileBuffer);
           const result = parser.parse();
@@ -26,11 +33,14 @@ export async function GET() {
               model: tags.Model || null,
             };
           }
+          dimensions = sizeOf(fileBuffer);
         } catch (error) {
           // Ignore errors for files without EXIF data
         }
         return {
-          src: `/pho_output/${file}`,
+          src: `${basePath}/pho_output/${file}`,
+          width: dimensions?.width,
+          height: dimensions?.height,
           exif: exifData,
         };
       });
