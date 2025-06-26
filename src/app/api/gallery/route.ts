@@ -21,16 +21,15 @@ export async function GET() {
         let exifData = null;
         let dimensions = null;
         try {
-          const parser = exifParser.create(fileBuffer);
-          const result = parser.parse();
-          const tags = result.tags;
-          if (tags) {
+          const result: any = exifReader(fileBuffer);
+          if (result && result.tags) {
+            const tags = result.tags;
             exifData = {
-              focalLength: tags.FocalLength ? `${tags.FocalLength}mm` : null,
-              fNumber: tags.FNumber ? `f/${tags.FNumber}` : null,
-              exposureTime: tags.ExposureTime ? `1/${Math.round(1 / tags.ExposureTime)}s` : null,
-              iso: tags.ISO || null,
-              model: tags.Model || null,
+              model: tags.Model || 'N/A',
+              focalLength: tags.FocalLength ? `${tags.FocalLength}mm` : 'N/A',
+              aperture: tags.FNumber ? `f/${tags.FNumber}` : 'N/A',
+              exposureTime: tags.ExposureTime ? `1/${Math.round(1 / tags.ExposureTime)}s` : 'N/A',
+              iso: tags.ISO || 'N/A',
             };
           }
           dimensions = sizeOf(fileBuffer);
