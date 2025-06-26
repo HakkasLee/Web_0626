@@ -23,6 +23,10 @@ export async function getSortedPostsData(subDirectory: 'blog' | 'projects') {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const matterResult = matter(fileContents);
 
+      // Ensure title and date are strings
+      const title = matterResult.data.title || 'Untitled';
+      const date = matterResult.data.date || new Date().toISOString().split('T')[0];
+
       // Process summary from markdown to HTML
       const processedSummary = await remark()
         .use(html)
@@ -31,6 +35,8 @@ export async function getSortedPostsData(subDirectory: 'blog' | 'projects') {
 
       return {
         id,
+        title,
+        date,
         summaryHtml,
         ...matterResult.data,
       };
