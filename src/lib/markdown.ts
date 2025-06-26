@@ -27,16 +27,28 @@ export async function getSortedPostsData(subDirectory: 'blog' | 'projects') {
       const title = matterResult.data.title || 'Untitled';
       const date = matterResult.data.date || new Date().toISOString().split('T')[0];
 
+      // Fields for projects with defaults
+      const time = matterResult.data.time || 'N/A';
+      const role = matterResult.data.role || 'N/A';
+      const keywords = matterResult.data.keywords || '';
+      const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+      const summary = matterResult.data.summary || '';
+
       // Process summary from markdown to HTML
       const processedSummary = await remark()
         .use(html)
-        .process(matterResult.data.summary || '');
+        .process(summary);
       const summaryHtml = processedSummary.toString();
 
       return {
         id,
         title,
         date,
+        time,
+        role,
+        keywords,
+        image,
+        summary,
         summaryHtml,
         ...matterResult.data,
       };
