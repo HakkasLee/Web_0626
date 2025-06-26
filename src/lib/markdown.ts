@@ -4,8 +4,19 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 import nextConfig from '../../next.config.mjs';
+import { visit } from 'unist-util-visit';
+import { Plugin } from 'unified';
 
 const basePath = nextConfig.basePath || '';
+
+// Custom Remark plugin to prepend basePath to image URLs
+const prependBasePath: Plugin = () => (tree) => {
+  visit(tree, 'image', (node: any) => {
+    if (node.url && node.url.startsWith('/')) {
+      node.url = `${basePath}${node.url}`;
+    }
+  });
+};
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
@@ -87,7 +98,9 @@ export async function getPostData(subDirectory: 'blog' | 'projects', id: string)
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
+  // Use remark to convert markdown into HTML string
   const processedContent = await remark()
+    .use(prependBasePath) // Use our custom plugin
     .use(html)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
