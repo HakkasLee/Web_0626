@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.masonry-container {
+  column-count: 3;
+  column-gap: 1rem;
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1rem;
+  break-inside: avoid;
+}
+
+@media (max-width: 900px) {
+  .masonry-container {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .masonry-container {
+    column-count: 1;
+  }
+}
+
+/* Masonry Gallery Styles */
+.masonry-gallery {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .masonry-gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .masonry-gallery {
+    column-count: 1;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+} 

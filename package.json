@@ -1,0 +1,38 @@
+{
+  "name": "personal-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export",
+    "deploy": "npm run build && npm run export"
+  },
+  "dependencies": {
+    "exif-parser": "^0.1.12",
+    "exif-reader": "^2.0.2",
+    "gray-matter": "^4.0.3",
+    "keen-slider": "^6.8.6",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "yet-another-react-lightbox": "^3.23.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "homepage": "https://你的用户名.github.io/Web_V2/"
+}
