@@ -105,11 +105,19 @@ export async function getPostData(subDirectory: 'blog' | 'projects', id: string)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  return {
+  const data: { [key: string]: any } = {
     id,
     contentHtml,
     ...matterResult.data,
   };
+
+  // Add basePath to the cover image from frontmatter for detail pages
+  if (data.image && typeof data.image === 'string' && data.image.startsWith('/')) {
+    data.image = `${basePath}${data.image}`;
+  }
+
+  // Combine the data with the id and contentHtml
+  return data;
 }
 
 export function getAllPostIds(subDirectory: 'blog' | 'projects') {
