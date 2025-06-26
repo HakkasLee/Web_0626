@@ -3,125 +3,73 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import nextConfig from '../../next.config.mjs';
-import { visit } from 'unist-util-visit';
-import { Plugin } from 'unified';
 
-const basePath = nextConfig.basePath || '';
+const postsDirectory = path.join(process.cwd(), 'content');
 
-// Custom Remark plugin to prepend basePath to image URLs
-const prependBasePath: Plugin = () => (tree) => {
-  visit(tree, 'image', (node: any) => {
-    if (node.url && node.url.startsWith('/')) {
-      node.url = `${basePath}${node.url}`;
+export async function getSortedPostsData(directory: 'blog' | 'projects') {
+  const dirPath = path.join(postsDirectory, directory);
+  const fileNames = fs.readdirSync(dirPath);
+  const allPostsData = await Promise.all(fileNames.map(async (fileName) => {
+    const id = fileName.replace(/\.md$/, '');
+    const fullPath = path.join(dirPath, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+
+    const title = matterResult.data.title || 'Untitled';
+    const date = matterResult.data.date || new Date().toISOString().split('T')[0];
+    const time = matterResult.data.time || 'N/A';
+    const role = matterResult.data.role || 'N/A';
+    const keywords = matterResult.data.keywords || '';
+    const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+    const summary = matterResult.data.summary || '';
+
+    const processedSummary = await remark()
+      .use(html)
+      .process(summary);
+    const summaryHtml = processedSummary.toString();
+
+    return {
+      id,
+      title,
+      date,
+      time,
+      role,
+      keywords,
+      image,
+      summary,
+      summaryHtml,
+      ...matterResult.data,
+    };
+  }));
+
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
     }
-  });
-};
-
-const contentDirectory = path.join(process.cwd(), 'content');
-
-export async function getSortedPostsData(subDirectory: 'blog' | 'projects') {
-  const dir = path.join(contentDirectory, subDirectory);
-  
-  // Check if directory exists
-  if (!fs.existsSync(dir)) {
-    return [];
-  }
-
-  const fileNames = fs.readdirSync(dir);
-  const allPostsData = await Promise.all(fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
-    .map(async (fileName) => {
-      const id = fileName.replace(/\.md$/, '');
-      const fullPath = path.join(dir, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const matterResult = matter(fileContents);
-
-      // Ensure title and date are strings
-      const title = matterResult.data.title || 'Untitled';
-      const date = matterResult.data.date || new Date().toISOString().split('T')[0];
-
-      // Fields for projects with defaults
-      const time = matterResult.data.time || 'N/A';
-      const role = matterResult.data.role || 'N/A';
-      const keywords = matterResult.data.keywords || '';
-      const imagePath = matterResult.data.image || '/images/projects/dco-placeholder.png';
-      const image = imagePath.startsWith('http') ? imagePath : `${basePath}${imagePath}`;
-      const summary = matterResult.data.summary || '';
-
-      // Process summary from markdown to HTML
-      const processedSummary = await remark()
-        .use(html)
-        .process(summary);
-      const summaryHtml = processedSummary.toString();
-
-      return {
-        id,
-        title,
-        date,
-        time,
-        role,
-        keywords,
-        image,
-        summary,
-        summaryHtml,
-        ...matterResult.data,
-      };
-    }));
-
-  // Sort posts by date if it exists
-  return allPostsData.sort((a: any, b: any) => {
-    if (a.date && b.date) {
-        if (a.date < b.date) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-    return 0; // No change in order if dates are not present
   });
 }
 
-export async function getPostData(subDirectory: 'blog' | 'projects', id: string) {
-  const fullPath = path.join(contentDirectory, subDirectory, `${id}.md`);
-  
-  if (!fs.existsSync(fullPath)) {
-    // You can return a custom object or throw an error
-    return {
-        id,
-        title: 'Not Found',
-        date: '',
-        contentHtml: '<p>The requested content was not found.</p>',
-    };
-  }
-    
+export async function getPostData(directory: string, id: string) {
+  const fullPath = path.join(postsDirectory, directory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
   const processedContent = await remark()
-    .use(prependBasePath) // Use our custom plugin
     .use(html)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  const data: { [key: string]: any } = {
+  return {
     id,
     contentHtml,
     ...matterResult.data,
   };
-
-  // Add basePath to the cover image from frontmatter for detail pages
-  if (data.image && typeof data.image === 'string' && data.image.startsWith('/')) {
-    data.image = `${basePath}${data.image}`;
-  }
-
-  // Combine the data with the id and contentHtml
-  return data;
 }
 
 export function getAllPostIds(subDirectory: 'blog' | 'projects') {
-    const dir = path.join(contentDirectory, subDirectory);
+    const dir = path.join(postsDirectory, subDirectory);
 
     if (!fs.existsSync(dir)) {
         return [];

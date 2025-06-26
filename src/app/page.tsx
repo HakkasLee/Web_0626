@@ -9,47 +9,47 @@ const HomeCarousel = dynamic(() => import('@/components/HomeCarousel'), { ssr: f
 // 假设图片文件名为 1.jpg, 2.jpg, 3.jpg
 const imageInfos = [
   {
-    src: `${basePath}/fig_background/background2.jpeg`,
+    src: '/fig_background/background2.jpeg',
     location: '中国｜北部湾·沙田港',
     latlng: "21°28'00\"N, 109°45'00\"E",
   },
   {
-    src: `${basePath}/fig_background/background1.jpeg`,
+    src: '/fig_background/background1.jpeg',
     location: '中国｜北部湾·铁山港',
     latlng: "21°37'00\"N, 109°27'00\"E",
   },
   {
-    src: `${basePath}/fig_background/background3.jpeg`,
+    src: '/fig_background/background3.jpeg',
     location: '中国｜安徽·黄山',
     latlng: "30°08'00\"N, 118°09'00\"E",
   },
   {
-    src: `${basePath}/fig_background/background4.jpeg`,
+    src: '/fig_background/background4.jpeg',
     location: '中国｜青岛·唐岛湾',
     latlng: "35°58'00\"N, 120°12'00\"E",
   },
   {
-    src: `${basePath}/fig_background/background5.jpeg`,
+    src: '/fig_background/background5.jpeg',
     location: '中国｜南京·紫金山',
     latlng: "32°03'39\"N, 118°50'54\"E",
   },
   {
-    src: `${basePath}/fig_background/background6.jpeg`,
+    src: '/fig_background/background6.jpeg',
     location: '中国｜珠海·金湾机场',
     latlng: "22°00'46\"N, 113°22'54\"E",
   },
   {
-    src: `${basePath}/fig_background/background7.jpeg`,
+    src: '/fig_background/background7.jpeg',
     location: '中国｜珠海·金湾机场',
     latlng: "22°00'46\"N, 113°22'54\"E",
   },
   {
-    src: `${basePath}/fig_background/background8.jpeg`,
+    src: '/fig_background/background8.jpeg',
     location: '中国｜上海·陆家嘴',
     latlng: "31°14'23\"N, 121°30'05\"E",
   },
   {
-    src: `${basePath}/fig_background/background9.jpeg`,
+    src: '/fig_background/background9.jpeg',
     location: '中国｜武汉·长江大桥',
     latlng: "30°32'49\"N, 114°17'15\"E",
   },

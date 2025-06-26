@@ -37,9 +37,9 @@ export async function GET() {
           // Ignore errors for files without EXIF data
         }
         return {
-          src: `${basePath}/pho_output/${file}`,
-          width: dimensions?.width,
-          height: dimensions?.height,
+          src: `/pho_output/${file}`,
+          width: dimensions?.width || 0,
+          height: dimensions?.height || 0,
           exif: exifData,
         };
       });
