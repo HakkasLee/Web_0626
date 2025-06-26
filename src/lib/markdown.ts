@@ -64,6 +64,8 @@ export async function getPostData(directory: string, id: string) {
   return {
     id,
     contentHtml,
+    title: matterResult.data.title || 'Untitled',
+    date: matterResult.data.date || '',
     ...matterResult.data,
   };
 }
