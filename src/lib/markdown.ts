@@ -3,8 +3,20 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import { visit } from 'unist-util-visit';
+import { Plugin } from 'unified';
 
 const postsDirectory = path.join(process.cwd(), 'content');
+const BASE = '/Web_0626';
+
+// 插件：为 Markdown 正文图片加前缀
+const prependBasePath: Plugin = () => (tree) => {
+  visit(tree, 'image', (node: any) => {
+    if (node.url && node.url.startsWith('/')) {
+      node.url = `${BASE}${node.url}`;
+    }
+  });
+};
 
 export async function getSortedPostsData(directory: 'blog' | 'projects') {
   const dirPath = path.join(postsDirectory, directory);
@@ -20,10 +32,12 @@ export async function getSortedPostsData(directory: 'blog' | 'projects') {
     const time = matterResult.data.time || 'N/A';
     const role = matterResult.data.role || 'N/A';
     const keywords = matterResult.data.keywords || '';
-    const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+    let image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+    if (image.startsWith('/')) image = `${BASE}${image}`;
     const summary = matterResult.data.summary || '';
 
     const processedSummary = await remark()
+      .use(prependBasePath)
       .use(html)
       .process(summary);
     const summaryHtml = processedSummary.toString();
@@ -56,7 +70,11 @@ export async function getPostData(directory: string, id: string) {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
+  let image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+  if (image.startsWith('/')) image = `${BASE}${image}`;
+
   const processedContent = await remark()
+    .use(prependBasePath)
     .use(html)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
@@ -66,6 +84,7 @@ export async function getPostData(directory: string, id: string) {
     contentHtml,
     title: matterResult.data.title || 'Untitled',
     date: matterResult.data.date || '',
+    image,
     ...matterResult.data,
   };
 }
