@@ -3,9 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import sizeOf from 'image-size';
 import exifReader from 'exif-reader';
-import nextConfig from '../../../../next.config.mjs';
-
-const basePath = nextConfig.basePath || '';
 
 export const revalidate = 3600;
 
@@ -37,7 +34,7 @@ export async function GET() {
           // Ignore errors for files without EXIF data
         }
         return {
-          src: `/Web_0626/pho_output/${file}`,
+          src: `/pho_output/${file}`,
           width: dimensions?.width || 0,
           height: dimensions?.height || 0,
           exif: exifData,
