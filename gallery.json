@@ -34,5 +34,125 @@
       "exposureTime": "1/1250s",
       "iso": 100
     }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC00867-1.jpeg",
+    "width": 6000,
+    "height": 4000,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "74mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/160s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC00872-1.jpeg",
+    "width": 3841,
+    "height": 5761,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "23mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/500s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC00875-1.jpeg",
+    "width": 6000,
+    "height": 4000,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "27mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/500s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC00885-1-2.jpeg",
+    "width": 4000,
+    "height": 6000,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "63mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/400s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC00896-1.jpeg",
+    "width": 6000,
+    "height": 4000,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "50mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/1600s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC00921-1.jpeg",
+    "width": 6000,
+    "height": 1147,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "33mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/800s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC00953-1.jpeg",
+    "width": 2048,
+    "height": 2944,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "18mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/3200s",
+      "iso": 800
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC01011-1.jpeg",
+    "width": 5417,
+    "height": 3321,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "42mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/200s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC01018-1.jpeg",
+    "width": 4000,
+    "height": 6000,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "87mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/200s",
+      "iso": 100
+    }
+  },
+  {
+    "src": "/Web_0626/pho_output/DSC01038-1.jpeg",
+    "width": 3851,
+    "height": 5776,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "86mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/800s",
+      "iso": 100
+    }
   }
 ]
