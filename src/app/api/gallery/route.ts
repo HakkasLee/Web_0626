@@ -6,6 +6,13 @@ import exifReader from 'exif-reader';
 
 export const revalidate = 3600;
 
+// 动态获取 basePath
+const getBasePath = () => {
+  return process.env.NODE_ENV === 'production' ? '/Web_0626' : '';
+};
+
+const basePath = getBasePath();
+
 export async function GET() {
   try {
     const photoDirectory = path.join(process.cwd(), 'public/pho_output');
@@ -34,7 +41,7 @@ export async function GET() {
           // Ignore errors for files without EXIF data
         }
         return {
-          src: `/pho_output/${file}`,
+          src: `${basePath}/pho_output/${file}`,
           width: dimensions?.width || 0,
           height: dimensions?.height || 0,
           exif: exifData,

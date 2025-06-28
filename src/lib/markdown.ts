@@ -6,6 +6,13 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 
+// 动态获取 basePath
+const getBasePath = () => {
+  return process.env.NODE_ENV === 'production' ? '/Web_0626' : '';
+};
+
+const basePath = getBasePath();
+
 export async function getSortedPostsData(directory: 'blog' | 'projects') {
   const dirPath = path.join(postsDirectory, directory);
   const fileNames = fs.readdirSync(dirPath);
@@ -20,7 +27,10 @@ export async function getSortedPostsData(directory: 'blog' | 'projects') {
     const time = matterResult.data.time || 'N/A';
     const role = matterResult.data.role || 'N/A';
     const keywords = matterResult.data.keywords || '';
-    const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+    let image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+    if (image.startsWith('/')) {
+      image = `${basePath}${image}`;
+    }
     const summary = matterResult.data.summary || '';
 
     const processedSummary = await remark()
@@ -56,7 +66,10 @@ export async function getPostData(directory: string, id: string) {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
-  const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+  let image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+  if (image.startsWith('/')) {
+    image = `${basePath}${image}`;
+  }
 
   const processedContent = await remark()
     .use(html)
