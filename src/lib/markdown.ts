@@ -6,16 +6,8 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 
-// 动态获取 basePath - 使用更可靠的判断方法
-const getBasePath = () => {
-  // 检查是否在构建过程中（静态导出）
-  if (process.env.NODE_ENV === 'production' || process.env.NEXT_PHASE === 'phase-production-build') {
-    return '/Web_0626';
-  }
-  return '';
-};
-
-const basePath = getBasePath();
+// 直接使用 basePath，确保在生产环境中正确添加前缀
+const basePath = '/Web_0626';
 
 export async function getSortedPostsData(directory: 'blog' | 'projects') {
   const dirPath = path.join(postsDirectory, directory);
