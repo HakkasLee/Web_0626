@@ -3,7 +3,7 @@ title: '25GHz–30GHz 高性能环形行波振荡器设计 (DCO)'
 time: '2024.04 – 2025.06'
 role: '芯片负责人'
 keywords: 'DCO, TSMCN22, 毫米波雷达, 高性能振荡器, ASSCC'
-image: '/images/projects/fig7.png'
+image: '/Web_0626/images/projects/fig7.png'
 summary: '通过创新的Gm结构以及供电设计，有效降低了振荡器功耗，实现了环形行波振荡器FoM突破。测试FoM@10M达到世界先进水平（-191 dB）。**相关成果ASSCC-2025在投（一作）**。'
 ---
 

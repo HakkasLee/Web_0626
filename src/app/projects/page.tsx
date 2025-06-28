@@ -18,11 +18,19 @@ const ProjectsPage = async () => {
   // Cast the data to the Project type
   const allProjects = await getSortedPostsData('projects') as Project[];
 
+  // 对调第一个和第三个项目
+  let projects = [...allProjects];
+  if (projects.length >= 3) {
+    const temp = projects[0];
+    projects[0] = projects[2];
+    projects[2] = temp;
+  }
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8">科研/工程项目</h1>
       <div className="space-y-12">
-        {allProjects.map((project) => (
+        {projects.map((project) => (
           <div key={project.id} className="flex flex-col md:flex-row gap-8 items-start">
             <div className="md:w-1/4">
               {project.image && (

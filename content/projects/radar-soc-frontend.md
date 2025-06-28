@@ -3,7 +3,7 @@ title: '77GHz 车载毫米波雷达 SOC 设计 (接收机TIA, VGA模块)'
 time: '2023.06 – 2024.01'
 role: '核心设计人员'
 keywords: 'TIA, VGA, SOC, 毫米波雷达, VLSI'
-image: '/images/projects/figRX_singlepath.png'
+image: '/Web_0626/images/projects/figRX_singlepath.png'
 summary: '基于TSMCN22工艺，设计毫米波雷达收发机芯片射频前端电路。**包含所设计电路的毫米波雷达接收机芯片于VLSI-2025发表（三作）**。'
 ---
 

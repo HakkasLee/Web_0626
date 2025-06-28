@@ -3,7 +3,7 @@ title: '77GHz 车载4D毫米波雷达 MIMO SOC 设计 (基带PGA)'
 time: '2024.11 – 2025.04'
 role: '核心设计人员'
 keywords: 'PGA, MIMO, SOC, 毫米波雷达, TSMCN22'
-image: '/images/projects/figVGA.png'
+image: '/Web_0626/images/projects/figVGA.png'
 summary: '基于TSMCN22工艺，为4D毫米波雷达MIMO SOC设计基带PGA。使用创新的Inverter-Based架构，实现在较高增益变化范围内的高dB线性度。**相关成果预计进行专利申请**。'
 ---
 
