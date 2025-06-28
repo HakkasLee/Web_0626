@@ -7,7 +7,7 @@ const GalleryPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/gallery')
+    fetch('/Web_0626/gallery.json')
       .then(res => res.json())
       .then(data => {
         setPhotos(data);
