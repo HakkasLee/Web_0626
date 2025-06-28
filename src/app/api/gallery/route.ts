@@ -6,9 +6,6 @@ import exifReader from 'exif-reader';
 
 export const revalidate = 3600;
 
-// 直接使用 basePath，确保在生产环境中正确添加前缀
-const basePath = '/Web_0626';
-
 export async function GET() {
   try {
     const photoDirectory = path.join(process.cwd(), 'public/pho_output');
@@ -37,7 +34,7 @@ export async function GET() {
           // Ignore errors for files without EXIF data
         }
         return {
-          src: `${basePath}/pho_output/${file}`,
+          src: `/pho_output/${file}`,
           width: dimensions?.width || 0,
           height: dimensions?.height || 0,
           exif: exifData,
