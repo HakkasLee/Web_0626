@@ -6,9 +6,13 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 
-// 动态获取 basePath
+// 动态获取 basePath - 使用更可靠的判断方法
 const getBasePath = () => {
-  return process.env.NODE_ENV === 'production' ? '/Web_0626' : '';
+  // 检查是否在构建过程中（静态导出）
+  if (process.env.NODE_ENV === 'production' || process.env.NEXT_PHASE === 'phase-production-build') {
+    return '/Web_0626';
+  }
+  return '';
 };
 
 const basePath = getBasePath();
