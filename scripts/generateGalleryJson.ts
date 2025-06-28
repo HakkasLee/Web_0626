@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import sizeOf from 'image-size';
-import exifReader from 'exif-reader';
+import exifParser from 'exif-parser';
 
 const photoDirectory = path.join(process.cwd(), 'public/pho_output');
 const outputJson = path.join(process.cwd(), 'public/gallery.json');
@@ -15,7 +15,8 @@ const photos = photoFiles
     let exifData = null;
     let dimensions = null;
     try {
-      const result: any = exifReader(fileBuffer);
+      const parser = exifParser.create(fileBuffer);
+      const result = parser.parse();
       if (result && result.tags) {
         const tags = result.tags;
         exifData = {

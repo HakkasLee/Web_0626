@@ -1,20 +1,38 @@
 [
   {
     "src": "/Web_0626/pho_output/DSC00370-1.jpeg",
-    "width": 0,
-    "height": 0,
-    "exif": null
+    "width": 6000,
+    "height": 3325,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "18mm",
+      "fNumber": "f/3.5",
+      "exposureTime": "1/320s",
+      "iso": 100
+    }
   },
   {
     "src": "/Web_0626/pho_output/DSC00392-1.jpeg",
-    "width": 0,
-    "height": 0,
-    "exif": null
+    "width": 6000,
+    "height": 4000,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "18mm",
+      "fNumber": "f/3.5",
+      "exposureTime": "1/1250s",
+      "iso": 100
+    }
   },
   {
     "src": "/Web_0626/pho_output/DSC00845-1-2.jpeg",
-    "width": 0,
-    "height": 0,
-    "exif": null
+    "width": 6000,
+    "height": 4000,
+    "exif": {
+      "model": "ILCE-6000",
+      "focalLength": "74mm",
+      "fNumber": "f/5.6",
+      "exposureTime": "1/1250s",
+      "iso": 100
+    }
   }
 ]
