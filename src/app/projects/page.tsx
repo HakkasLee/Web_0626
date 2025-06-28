@@ -18,13 +18,9 @@ const ProjectsPage = async () => {
   // Cast the data to the Project type
   const allProjects = await getSortedPostsData('projects') as Project[];
 
-  // 对调第一个和第三个项目
-  let projects = [...allProjects];
-  if (projects.length >= 3) {
-    const temp = projects[0];
-    projects[0] = projects[2];
-    projects[2] = temp;
-  }
+  // 按文件名顺序强制排序：mimo-soc-pga, high-performance-dco, radar-soc-frontend
+  const order = ['mimo-soc-pga', 'high-performance-dco', 'radar-soc-frontend'];
+  let projects = order.map(id => allProjects.find(p => p.id === id)).filter(Boolean) as Project[];
 
   return (
     <div>
