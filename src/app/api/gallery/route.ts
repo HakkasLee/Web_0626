@@ -34,7 +34,7 @@ export async function GET() {
           // Ignore errors for files without EXIF data
         }
         return {
-          src: `/pho_output/${file}`,
+          src: `/Web_0626/pho_output/${file}`,
           width: dimensions?.width || 0,
           height: dimensions?.height || 0,
           exif: exifData,

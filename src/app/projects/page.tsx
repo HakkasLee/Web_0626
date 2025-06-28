@@ -28,7 +28,7 @@ const ProjectsPage = async () => {
               {project.image && (
                  <Link href={`/projects/${project.id}`}>
                     <Image
-                        src={project.image}
+                        src={project.image.startsWith('/Web_0626') ? project.image : `/Web_0626${project.image}`}
                         alt={project.title}
                         width={300}
                         height={225}

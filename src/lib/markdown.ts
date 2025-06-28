@@ -20,7 +20,7 @@ export async function getSortedPostsData(directory: 'blog' | 'projects') {
     const time = matterResult.data.time || 'N/A';
     const role = matterResult.data.role || 'N/A';
     const keywords = matterResult.data.keywords || '';
-    const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+    const image = matterResult.data.image || '/Web_0626/images/projects/dco-placeholder.png';
     const summary = matterResult.data.summary || '';
 
     const processedSummary = await remark()
@@ -56,7 +56,7 @@ export async function getPostData(directory: string, id: string) {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const matterResult = matter(fileContents);
 
-  const image = matterResult.data.image || '/images/projects/dco-placeholder.png';
+  const image = matterResult.data.image || '/Web_0626/images/projects/dco-placeholder.png';
 
   const processedContent = await remark()
     .use(html)

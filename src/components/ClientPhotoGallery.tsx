@@ -41,7 +41,7 @@ const ClientPhotoGallery = ({ photos }: Props) => {
             onClick={() => setIndex(idx)}
           >
             <Image
-              src={photo.src}
+              src={photo.src.startsWith('/Web_0626') ? photo.src : `/Web_0626${photo.src}`}
               alt={`Photography ${idx + 1}`}
               width={500}
               height={700}
@@ -111,7 +111,7 @@ const ClientPhotoGallery = ({ photos }: Props) => {
                 <div className="flex flex-row items-center justify-center mx-auto">
                   <div className="flex-1 flex items-center justify-end bg-black">
                     <img
-                      src={photo.src}
+                      src={photo.src.startsWith('/Web_0626') ? photo.src : `/Web_0626${photo.src}`}
                       alt={photo.desc || 'photo'}
                       className="max-h-[80vh] max-w-full object-contain mx-0"
                       style={{ background: '#222' }}
