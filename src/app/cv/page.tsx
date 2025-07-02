@@ -14,7 +14,7 @@ const CVPage = () => {
       <Section title="研究方向">
         <ul className="list-disc pl-5 space-y-1">
           <li>模拟与射频集成电路设计（Analog/RF IC）</li>
-          <li>振荡器架构、调tuning与相位噪声优化</li>
+          <li>高性能振荡器设计</li>
           <li>TIA / VGA / PGA 等基带放大器设计</li>
           <li>毫米波雷达系统芯片（77GHz MIMO SoC）</li>
         </ul>

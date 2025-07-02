@@ -21,7 +21,7 @@ const GalleryPage = () => {
       {loading ? (
         <div className="text-center text-gray-400 py-12">图片加载中…</div>
       ) : (
-        <ClientPhotoGallery photos={photos} />
+      <ClientPhotoGallery photos={photos} />
       )}
     </div>
   );
